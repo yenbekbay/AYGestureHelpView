@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'AYGestureHelpView_Example', :exclusive => true do
+  pod "AYGestureHelpView", :path => "../"
+end
+
+target 'AYGestureHelpView_Tests', :exclusive => true do
+  pod "AYGestureHelpView", :path => "../"
+
+  
+end
