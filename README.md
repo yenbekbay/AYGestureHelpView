@@ -12,7 +12,7 @@ A view that can show a tutorial for gestures.
   </a>
 </p>
 
-![AYGestureHelpView](https://raw.githubusercontent.com/yenbekbay/AYGestureHelpView/master/Assets/screencast.gif)
+<img width="300" alt="AYGestureHelpView" src="Assets/screencast.gif"/>
 
 ## Usage
 
