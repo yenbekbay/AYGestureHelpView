@@ -6,7 +6,7 @@
 
 A view that can show a tutorial for gestures.
 
-<p align="center">
+<p>
   <a href='https://appetize.io/app/d8khut8m036uz1dzu5y45y7rwc' alt='Live demo'>
     <img width="50" height="60" src="Assets/demo.png"/>
   </a>
@@ -20,20 +20,20 @@ You can show a tutorial for one gesture.
 
 ```objc
 AYGestureHelpView *helpView = [AYGestureHelpView new];
-    [helpView doubleTapWithLabelText:NSLocalizedString(@"Double tap to open the menu", nil) labelPoint:CGPointMake(self.view.center.x, self.view.center.y + 70) touchPoint:self.view.center dismissHandler:nil hideOnDismiss:YES];
+[helpView doubleTapWithLabelText:NSLocalizedString(@"Double tap to open the menu", nil) labelPoint:CGPointMake(self.view.center.x, self.view.center.y + 70) touchPoint:self.view.center dismissHandler:nil hideOnDismiss:YES];
 ```
 
 Or you can chain gestures.
 
 ```objc
 AYGestureHelpView *helpView = [AYGestureHelpView new];
-    [helpView doubleTapWithLabelText:NSLocalizedString(@"Double tap to open the menu", nil) labelPoint:CGPointMake(self.view.center.x, self.view.center.y + 70) touchPoint:self.view.center dismissHandler:^{
-        [helpView swipeWithLabelText:NSLocalizedString(@"Swipe to scroll through cards", nil) labelPoint:CGPointMake(self.view.center.x, self.view.center.y + 70) touchStartPoint:CGPointMake(self.view.center.x + 25, self.view.center.y) touchEndPoint:CGPointMake(self.view.center.x - 25, self.view.center.y) dismissHandler:^{
-            [helpView swipeWithLabelText:NSLocalizedString(@"Pull down to refresh", nil) labelPoint:CGPointMake(self.view.center.x, self.view.center.y + 70) touchStartPoint:CGPointMake(self.view.center.x, self.view.center.y - 50)  touchEndPoint:self.view.center dismissHandler:^{
-                    self.showHelpViewButton.hidden = NO;
-                } hideOnDismiss:YES];
-        } hideOnDismiss:NO];
-    } hideOnDismiss:NO];
+[helpView doubleTapWithLabelText:NSLocalizedString(@"Double tap to open the menu", nil) labelPoint:CGPointMake(self.view.center.x, self.view.center.y + 70) touchPoint:self.view.center dismissHandler:^{
+  [helpView swipeWithLabelText:NSLocalizedString(@"Swipe to scroll through cards", nil) labelPoint:CGPointMake(self.view.center.x, self.view.center.y + 70) touchStartPoint:CGPointMake(self.view.center.x + 25, self.view.center.y) touchEndPoint:CGPointMake(self.view.center.x - 25, self.view.center.y) dismissHandler:^{
+    [helpView swipeWithLabelText:NSLocalizedString(@"Pull down to refresh", nil) labelPoint:CGPointMake(self.view.center.x, self.view.center.y + 70) touchStartPoint:CGPointMake(self.view.center.x, self.view.center.y - 50)  touchEndPoint:self.view.center dismissHandler:^{
+      self.showHelpViewButton.hidden = NO;
+    } hideOnDismiss:YES];
+  } hideOnDismiss:NO];
+} hideOnDismiss:NO];
 ```
 
 ## Installation
