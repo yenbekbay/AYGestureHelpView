@@ -1,40 +1,15 @@
-#
-# Be sure to run `pod lib lint AYGestureHelpView.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "AYGestureHelpView"
   s.version          = "0.1.0"
-  s.summary          = "A short description of AYGestureHelpView."
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!  
-  s.description      = <<-DESC
-                       DESC
-
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/AYGestureHelpView"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.summary          = "A view that can show a tutorial for gestures"
+  s.homepage         = "https://github.com/yenbekbay/AYGestureHelpView"
   s.license          = 'MIT'
   s.author           = { "Ayan Yenbekbay" => "ayan.yenb@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/AYGestureHelpView.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/yenbekbay/AYGestureHelpView.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'AYGestureHelpView' => ['Pod/Assets/*.png']
-  }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'pop', '~> 1.0'
 end

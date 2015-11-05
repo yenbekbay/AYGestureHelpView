@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20F070A71BEC027A00CBC81E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20F070A61BEC027A00CBC81E /* Main.storyboard */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -21,7 +22,6 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		6629AD778F0B8907809EF758 /* Pods_AYGestureHelpView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A034322E974DA0E51EC0F /* Pods_AYGestureHelpView_Tests.framework */; };
-		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A8D7DC00F6CB26C4FBCE9A4A /* Pods_AYGestureHelpView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E9590D07C11374C2E8EF00 /* Pods_AYGestureHelpView_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,9 +37,10 @@
 
 /* Begin PBXFileReference section */
 		04161EFB9B0FBA642B0F3E64 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		20F070A61BEC027A00CBC81E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		303EFD43B8D9CCFC9259A23C /* Pods-AYGestureHelpView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AYGestureHelpView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AYGestureHelpView_Tests/Pods-AYGestureHelpView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5D6D43622D6E76A91E1948D6 /* AYGestureHelpView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = AYGestureHelpView.podspec; path = ../AYGestureHelpView.podspec; sourceTree = "<group>"; };
-		6003F58A195388D20070C39A /* AYGestureHelpView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = AYGestureHelpView.app; path = AYGestureHelpView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6003F58A195388D20070C39A /* AYGestureHelpView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AYGestureHelpView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -52,14 +53,13 @@
 		6003F5A5195388D20070C39A /* AYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AYViewController.h; sourceTree = "<group>"; };
 		6003F5A6195388D20070C39A /* AYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AYViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6003F5AE195388D20070C39A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Tests.xctest; path = AYGestureHelpView_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6003F5AE195388D20070C39A /* AYGestureHelpView_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AYGestureHelpView_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		7C5A034322E974DA0E51EC0F /* Pods_AYGestureHelpView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AYGestureHelpView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8CF638B3143493E111BB138E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		AB38C4135B96B7366D158D93 /* Pods-AYGestureHelpView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AYGestureHelpView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-AYGestureHelpView_Example/Pods-AYGestureHelpView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		BC9D3A98F509771BB735888B /* Pods-AYGestureHelpView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AYGestureHelpView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AYGestureHelpView_Tests/Pods-AYGestureHelpView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -119,8 +119,8 @@
 		6003F58B195388D20070C39A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6003F58A195388D20070C39A /* AYGestureHelpView.app */,
-				6003F5AE195388D20070C39A /* Tests.xctest */,
+				6003F58A195388D20070C39A /* AYGestureHelpView_Example.app */,
+				6003F5AE195388D20070C39A /* AYGestureHelpView_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,7 +143,7 @@
 			children = (
 				6003F59C195388D20070C39A /* AYAppDelegate.h */,
 				6003F59D195388D20070C39A /* AYAppDelegate.m */,
-				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
+				20F070A61BEC027A00CBC81E /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* AYViewController.h */,
 				6003F5A6195388D20070C39A /* AYViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
@@ -213,7 +213,7 @@
 			);
 			name = AYGestureHelpView_Example;
 			productName = AYGestureHelpView;
-			productReference = 6003F58A195388D20070C39A /* AYGestureHelpView.app */;
+			productReference = 6003F58A195388D20070C39A /* AYGestureHelpView_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
 		6003F5AD195388D20070C39A /* AYGestureHelpView_Tests */ = {
@@ -234,7 +234,7 @@
 			);
 			name = AYGestureHelpView_Tests;
 			productName = AYGestureHelpViewTests;
-			productReference = 6003F5AE195388D20070C39A /* Tests.xctest */;
+			productReference = 6003F5AE195388D20070C39A /* AYGestureHelpView_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -244,7 +244,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = AY;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Ayan Yenbekbay";
 				TargetAttributes = {
 					6003F5AD195388D20070C39A = {
@@ -276,7 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				20F070A71BEC027A00CBC81E /* Main.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
@@ -452,6 +452,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -516,7 +517,9 @@
 				GCC_PREFIX_HEADER = "AYGestureHelpView/AYGestureHelpView-Prefix.pch";
 				INFOPLIST_FILE = "AYGestureHelpView/AYGestureHelpView-Info.plist";
 				MODULE_NAME = ExampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -531,7 +534,9 @@
 				GCC_PREFIX_HEADER = "AYGestureHelpView/AYGestureHelpView-Prefix.pch";
 				INFOPLIST_FILE = "AYGestureHelpView/AYGestureHelpView-Info.plist";
 				MODULE_NAME = ExampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -553,6 +558,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AYGestureHelpView_Example.app/AYGestureHelpView_Example";
 				WRAPPER_EXTENSION = xctest;
@@ -572,6 +578,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AYGestureHelpView_Example.app/AYGestureHelpView_Example";
 				WRAPPER_EXTENSION = xctest;
