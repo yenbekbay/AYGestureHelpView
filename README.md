@@ -4,15 +4,15 @@
 [![License](https://img.shields.io/cocoapods/l/AYGestureHelpView.svg?style=flat)](http://cocoapods.org/pods/AYGestureHelpView)
 [![Platform](https://img.shields.io/cocoapods/p/AYGestureHelpView.svg?style=flat)](http://cocoapods.org/pods/AYGestureHelpView)
 
-A view that can show a tutorial for gestures in your app
+A view that can show a tutorial for gestures.
 
 <p align="center">
   <a href='https://appetize.io/app/d8khut8m036uz1dzu5y45y7rwc' alt='Live demo'>
-    <img width="50" height="60" src="assets/demo.png"/>
+    <img width="50" height="60" src="Assets/demo.png"/>
   </a>
 </p>
 
-![AYGestureHelpView](https://raw.githubusercontent.com/yenbekbay/AYGestureHelpView/master/assets/demo.gif)
+![AYGestureHelpView](https://raw.githubusercontent.com/yenbekbay/AYGestureHelpView/master/Assets/screencast.gif)
 
 ## Usage
 
