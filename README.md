@@ -29,9 +29,7 @@ Or you can chain gestures.
 AYGestureHelpView *helpView = [AYGestureHelpView new];
 [helpView doubleTapWithLabelText:NSLocalizedString(@"Double tap to open the menu", nil) labelPoint:CGPointMake(self.view.center.x, self.view.center.y + 70) touchPoint:self.view.center dismissHandler:^{
   [helpView swipeWithLabelText:NSLocalizedString(@"Swipe to scroll through cards", nil) labelPoint:CGPointMake(self.view.center.x, self.view.center.y + 70) touchStartPoint:CGPointMake(self.view.center.x + 25, self.view.center.y) touchEndPoint:CGPointMake(self.view.center.x - 25, self.view.center.y) dismissHandler:^{
-    [helpView swipeWithLabelText:NSLocalizedString(@"Pull down to refresh", nil) labelPoint:CGPointMake(self.view.center.x, self.view.center.y + 70) touchStartPoint:CGPointMake(self.view.center.x, self.view.center.y - 50)  touchEndPoint:self.view.center dismissHandler:^{
-      self.showHelpViewButton.hidden = NO;
-    } hideOnDismiss:YES];
+    [helpView swipeWithLabelText:NSLocalizedString(@"Pull down to refresh", nil) labelPoint:CGPointMake(self.view.center.x, self.view.center.y + 70) touchStartPoint:CGPointMake(self.view.center.x, self.view.center.y - 50)  touchEndPoint:self.view.center dismissHandler:nil hideOnDismiss:YES];
   } hideOnDismiss:NO];
 } hideOnDismiss:NO];
 ```
