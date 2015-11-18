@@ -8,7 +8,7 @@
 
 #import "AYViewController.h"
 
-#import <AYGestureHelpView/AYGestureHelpView.h>
+
 
 @interface AYViewController ()
 
@@ -21,13 +21,41 @@
 - (IBAction)showHelpView:(id)sender {
     self.showHelpViewButton.hidden = YES;
     AYGestureHelpView *helpView = [AYGestureHelpView new];
-    [helpView doubleTapWithLabelText:NSLocalizedString(@"Double tap to open the menu", nil) labelPoint:CGPointMake(self.view.center.x, self.view.center.y + 70) touchPoint:self.view.center dismissHandler:^{
-        [helpView swipeWithLabelText:NSLocalizedString(@"Swipe to scroll through cards", nil) labelPoint:CGPointMake(self.view.center.x, self.view.center.y + 70) touchStartPoint:CGPointMake(self.view.center.x + 25, self.view.center.y) touchEndPoint:CGPointMake(self.view.center.x - 25, self.view.center.y) dismissHandler:^{
-            [helpView swipeWithLabelText:NSLocalizedString(@"Pull down to refresh", nil) labelPoint:CGPointMake(self.view.center.x, self.view.center.y + 70) touchStartPoint:CGPointMake(self.view.center.x, self.view.center.y - 50)  touchEndPoint:self.view.center dismissHandler:^{
-                    self.showHelpViewButton.hidden = NO;
-                } hideOnDismiss:YES];
-        } hideOnDismiss:NO];
-    } hideOnDismiss:NO];
+    helpView.delegate = self;
+                
+    [helpView longPressWithLabelText:NSLocalizedString(@"Tap and hold to open the menu", nil) labelPoint:CGPointMake(self.view.center.x, self.view.center.y + 70) touchPoint:self.view.center dismissHandler:^{
+        self.showHelpViewButton.hidden = NO;
+    } hideOnDismiss:YES];
+    
+                
+    self.showHelpViewButton.hidden = NO;
+ 
 }
 
+/**
+ *  Long press started.
+ */
+-(void)longPressStateBegan{
+    
+    NSLog(@"Long press started");
+    
+}
+
+/**
+ *  Long press event changed its state.
+ */
+-(void)longPressStateChanged{
+    
+    NSLog(@"Long press state changed");
+    
+}
+
+/**
+ *  Long press ended.
+ */
+-(void)longPressStateEnded{
+    
+    NSLog(@"Long press state ended");
+    
+}
 @end

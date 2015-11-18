@@ -53,10 +53,20 @@
     [self addTapAnimationToOuterCircle:self.firstOuterCircle];
 }
 
+- (void)addLPressAnimation {
+    [self addAlphaAnimation];
+    [self addLPressAnimationToOuterCircle:self.firstOuterCircle];
+}
+
 - (void)addDoubleTapAnimation {
     [self addTapAnimation];
     [self performSelector:@selector(addTapAnimationToOuterCircle:) withObject:self.secondOuterCircle afterDelay:0.5f];
     [self performSelector:@selector(addAlphaAnimation) withObject:self.secondOuterCircle afterDelay:0.5f];
+}
+
+- (void)addLongPressAnimation {
+    [self addLPressAnimation];
+
 }
 
 - (void)addSwipeAnimation {
@@ -98,5 +108,24 @@
     [outerCircle.layer pop_addAnimation:scaleAnimation forKey:@"scale"];
     [outerCircle pop_addAnimation:alphaAnimation forKey:@"alpha"];
 }
+
+- (void)addLPressAnimationToOuterCircle:(UIView *)outerCircle {
+    POPBasicAnimation *scaleAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    scaleAnimation.fromValue = [NSValue valueWithCGSize:CGSizeMake(1, 1)];
+    scaleAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(3.5f, 3.5f)];
+    
+    POPBasicAnimation *alphaAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    alphaAnimation.fromValue = @(1);
+    alphaAnimation.toValue = @(0);
+    
+    for (POPBasicAnimation *animation in @[scaleAnimation, alphaAnimation]) {
+        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+        animation.duration = 1;
+    }
+    [outerCircle.layer pop_addAnimation:scaleAnimation forKey:@"scale"];
+    [outerCircle pop_addAnimation:alphaAnimation forKey:@"alpha"];
+}
+
+
 
 @end
