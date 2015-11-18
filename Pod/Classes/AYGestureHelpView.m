@@ -75,23 +75,6 @@ static CGFloat const kHelpViewDefaultTouchRadius = 25;
     [self tapWithLabelText:labelText labelPoint:labelPoint touchPoint:touchPoint dismissHandler:dismissHandler doubleTap:YES hideOnDismiss:hideOnDismiss];
 }
 
-
-- (void)longPressWithLabelText:(NSString *)labelText labelPoint:(CGPoint)labelPoint touchPoint:(CGPoint)touchPoint dismissHandler:(AYGestureHelpViewDismissHandler)dismissHandler hideOnDismiss:(BOOL)hideOnDismiss {
-    
-    
-    UILongPressGestureRecognizer* _longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressDetected:)];
-    
-    while (self.gestureRecognizers.count) {
-        [self removeGestureRecognizer:[self.gestureRecognizers objectAtIndex:0]];
-    };
-    [self addGestureRecognizer:_longPressRecognizer];
-    
-      [self longPressWithLabelText:labelText labelPoint:labelPoint touchPoint:touchPoint dismissHandler:dismissHandler longPress:YES hideOnDismiss:hideOnDismiss];
-
-}
-
-
-
 - (void)swipeWithLabelText:(NSString *)labelText labelPoint:(CGPoint)labelPoint touchStartPoint:(CGPoint)touchStartPoint touchEndPoint:(CGPoint)touchEndPoint dismissHandler:(AYGestureHelpViewDismissHandler)dismissHandler hideOnDismiss:(BOOL)hideOnDismiss {
     self.touchView.center = touchStartPoint;
     self.touchView.startPoint = touchStartPoint;
@@ -159,33 +142,6 @@ static CGFloat const kHelpViewDefaultTouchRadius = 25;
     }];
 }
 
-
-- (void)longPressWithLabelText:(NSString *)labelText labelPoint:(CGPoint)labelPoint touchPoint:(CGPoint)touchPoint dismissHandler:(AYGestureHelpViewDismissHandler)dismissHandler longPress:(BOOL)longPress hideOnDismiss:(BOOL)hideOnDismiss {
-    self.touchView.center = touchPoint;
-    self.label.text = labelText;
-    [self.label sizeToFit];
-    self.label.center = labelPoint;
-    self.dismissHandler = dismissHandler;
-    self.hideOnDismiss = hideOnDismiss;
-    
-    if (!self.superview) {
-        [[[UIApplication sharedApplication] delegate].window addSubview:self];
-    }
-    [self showIfNeededWithCompletionBlock:^{
-        if (self.timer) {
-            [self.timer invalidate];
-        }
-        if (longPress) {
-            [self.touchView addLongPressAnimation];
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self.touchView selector:@selector(addLongPressAnimation) userInfo:nil repeats:YES];
-        } else {
-            [self.touchView addLPressAnimation];
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:1.5f target:self.touchView selector:@selector(addLPressAnimation) userInfo:nil repeats:YES];
-        }
-    }];
-}
-
-
 - (void)showIfNeededWithCompletionBlock:(void (^ _Nonnull)(void))completionBlock {
     if (self.alpha == 0) {
         [UIView animateWithDuration:0.5f animations:^{
@@ -211,45 +167,5 @@ static CGFloat const kHelpViewDefaultTouchRadius = 25;
         self.dismissHandler();
     }
 }
-
-/**
- *  UIGestureRecognizer for long press.
- *
- *  @param gestureRecognizer
- */
-- (void)longPressDetected:(UIGestureRecognizer *)gestureRecognizer{
-    
-    if( gestureRecognizer.state == UIGestureRecognizerStateBegan){
-        
-        [self.delegate longPressStateBegan];
-    }
-    
-    if( gestureRecognizer.state == UIGestureRecognizerStateChanged){
-        
-        [self.delegate longPressStateChanged];
-    
-    }
-    
-
-    if( gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        
-        [self.delegate longPressStateEnded];
-        
-        if (self.hideOnDismiss) {
-            [self.timer invalidate];
-            [UIView animateWithDuration:0.5f animations:^{
-                self.alpha = 0;
-            } completion:^(BOOL finished) {
-                [self removeFromSuperview];
-            }];
-        }
-        if (self.dismissHandler) {
-            self.dismissHandler();
-        }
-    }
-}
-
-
-
 
 @end
