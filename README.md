@@ -7,7 +7,7 @@
 A view that can show a tutorial for gestures.
 
 <p>
-  <a href='https://appetize.io/app/d8khut8m036uz1dzu5y45y7rwc' alt='Live demo'>
+  <a href='https://appetize.io/app/0gvbpg1kekvfv1ex8j1gzrfdx4' alt='Live demo'>
     <img width="50" height="60" src="Assets/demo.png"/>
   </a>
 </p>
