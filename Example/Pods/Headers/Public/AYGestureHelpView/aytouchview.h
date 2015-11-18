@@ -15,13 +15,7 @@ extern NSTimeInterval const kLongPressAnimationDuration;
 
 #pragma mark Properties
 
-/**
- *  Start point for the motion in the swipe animation.
- */
 @property (nonatomic) CGPoint startPoint;
-/**
- *  End point for the motion in the swipe animation.
- */
 @property (nonatomic) CGPoint endPoint;
 
 #pragma mark Methods
@@ -34,14 +28,7 @@ extern NSTimeInterval const kLongPressAnimationDuration;
  *  Adds an animation resembling a double tap gesture.
  */
 - (void)addDoubleTapAnimation;
-/**
- *  Adds an animation resembling a swipe gesture.
- *  @warning Specify <code>startPoint</code> and <code>endPoint</code> before calling this method.
- */
 - (void)addSwipeAnimation;
-/**
- *  Adds an animation resembling a long press gesture.
- */
 - (void)addLongPressAnimation;
 
 @end

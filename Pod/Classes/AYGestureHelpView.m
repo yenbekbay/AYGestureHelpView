@@ -80,18 +80,18 @@ static CGFloat const kHelpViewDefaultTouchRadius = 25;
 }
 
 - (void)swipeWithLabelText:(NSString *)labelText labelPoint:(CGPoint)labelPoint touchStartPoint:(CGPoint)touchStartPoint touchEndPoint:(CGPoint)touchEndPoint dismissHandler:(AYGestureHelpViewDismissHandler)dismissHandler hideOnDismiss:(BOOL)hideOnDismiss {
-  self.touchView.center = touchStartPoint;
-  self.touchView.startPoint = touchStartPoint;
-  self.touchView.endPoint = touchEndPoint;
-  self.label.text = labelText;
-  [self.label sizeToFit];
-  self.label.center = labelPoint;
-  self.dismissHandler = dismissHandler;
-  self.hideOnDismiss = hideOnDismiss;
-
+  [self prepareViewWithLabelText:labelText labelPoint:labelPoint touchStartPoint:touchStartPoint touchEndPoint:touchEndPoint dismissHandler:dismissHandler hideOnDismiss:hideOnDismiss];
   [self showIfNeededWithCompletionBlock:^{
     [self.touchView addSwipeAnimation];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.5f target:self.touchView selector:@selector(addSwipeAnimation) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:kSwipeAnimationDuration target:self.touchView selector:@selector(addSwipeAnimation) userInfo:nil repeats:YES];
+  }];
+}
+
+- (void)longPressWithLabelText:(NSString *)labelText labelPoint:(CGPoint)labelPoint touchPoint:(CGPoint)touchPoint dismissHandler:(AYGestureHelpViewDismissHandler)dismissHandler hideOnDismiss:(BOOL)hideOnDismiss {
+  [self prepareViewWithLabelText:labelText labelPoint:labelPoint touchStartPoint:touchPoint touchEndPoint:CGPointZero dismissHandler:dismissHandler hideOnDismiss:hideOnDismiss];
+  [self showIfNeededWithCompletionBlock:^{
+    [self.touchView addLongPressAnimation];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:kLongPressAnimationDuration target:self.touchView selector:@selector(addLongPressAnimation) userInfo:nil repeats:YES];
   }];
 }
 
@@ -116,22 +116,29 @@ static CGFloat const kHelpViewDefaultTouchRadius = 25;
 }
 
 - (void)tapWithLabelText:(NSString *)labelText labelPoint:(CGPoint)labelPoint touchPoint:(CGPoint)touchPoint dismissHandler:(AYGestureHelpViewDismissHandler)dismissHandler doubleTap:(BOOL)doubleTap hideOnDismiss:(BOOL)hideOnDismiss {
-  self.touchView.center = touchPoint;
+  [self prepareViewWithLabelText:labelText labelPoint:labelPoint touchStartPoint:touchPoint touchEndPoint:CGPointZero dismissHandler:dismissHandler hideOnDismiss:hideOnDismiss];
+  [self showIfNeededWithCompletionBlock:^{
+    if (doubleTap) {
+      [self.touchView addDoubleTapAnimation];
+      self.timer = [NSTimer scheduledTimerWithTimeInterval:kDoubleTapAnimationDuration target:self.touchView selector:@selector(addDoubleTapAnimation) userInfo:nil repeats:YES];
+    } else {
+      [self.touchView addTapAnimation];
+      self.timer = [NSTimer scheduledTimerWithTimeInterval:kTapAnimationDuration target:self.touchView selector:@selector(addTapAnimation) userInfo:nil repeats:YES];
+    }
+  }];
+}
+
+- (void)prepareViewWithLabelText:(NSString *)labelText labelPoint:(CGPoint)labelPoint touchStartPoint:(CGPoint)touchStartPoint touchEndPoint:(CGPoint)touchEndPoint dismissHandler:(AYGestureHelpViewDismissHandler)dismissHandler hideOnDismiss:(BOOL)hideOnDismiss {
+  self.touchView.center = touchStartPoint;
+  if (!CGPointEqualToPoint(touchStartPoint, CGPointZero)) {
+    self.touchView.startPoint = touchStartPoint;
+    self.touchView.endPoint = touchEndPoint;
+  }
   self.label.text = labelText;
   [self.label sizeToFit];
   self.label.center = labelPoint;
   self.dismissHandler = dismissHandler;
   self.hideOnDismiss = hideOnDismiss;
-
-  [self showIfNeededWithCompletionBlock:^{
-    if (doubleTap) {
-      [self.touchView addDoubleTapAnimation];
-      self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self.touchView selector:@selector(addDoubleTapAnimation) userInfo:nil repeats:YES];
-    } else {
-      [self.touchView addTapAnimation];
-      self.timer = [NSTimer scheduledTimerWithTimeInterval:1.5f target:self.touchView selector:@selector(addTapAnimation) userInfo:nil repeats:YES];
-    }
-  }];
 }
 
 - (void)showIfNeededWithCompletionBlock:(void (^_Nonnull)(void))completionBlock {

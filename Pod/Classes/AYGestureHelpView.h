@@ -85,5 +85,16 @@ typedef void (^AYGestureHelpViewDismissHandler)(void);
  *  chain other animations.
  */
 - (void)swipeWithLabelText:(NSString *)labelText labelPoint:(CGPoint)labelPoint touchStartPoint:(CGPoint)touchStartPoint touchEndPoint:(CGPoint)touchEndPoint dismissHandler:(AYGestureHelpViewDismissHandler)dismissHandler hideOnDismiss:(BOOL)hideOnDismiss;
+/**
+ *  Performs a repeating long press gesture animation at the specified point with the specified description text.
+ *
+ *  @param labelText      Text for the description label.
+ *  @param labelPoint     Position for the description label relative to the view frame.
+ *  @param touchPoint     Position for the touch view relative to the view frame.
+ *  @param dismissHandler Action performed when the user taps on the view.
+ *  @param hideOnDismiss  Whether or not the view should be dismissed on tap. Set NO if you would like to
+ *  chain other animations.
+ */
+- (void)longPressWithLabelText:(NSString *)labelText labelPoint:(CGPoint)labelPoint touchPoint:(CGPoint)touchPoint dismissHandler:(AYGestureHelpViewDismissHandler)dismissHandler hideOnDismiss:(BOOL)hideOnDismiss;
 
 @end

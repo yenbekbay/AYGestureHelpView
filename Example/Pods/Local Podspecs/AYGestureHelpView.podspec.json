@@ -1,7 +1,7 @@
 {
   "name": "AYGestureHelpView",
   "version": "0.1.0",
-  "summary": "Show a tutorial for gestures in your app",
+  "summary": "A view that can show a tutorial for gestures",
   "homepage": "https://github.com/yenbekbay/AYGestureHelpView",
   "license": "MIT",
   "authors": {

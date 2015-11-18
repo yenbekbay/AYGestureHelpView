@@ -82,12 +82,3 @@ strip_invalid_archs() {
   fi
 }
 
-
-if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-AYGestureHelpView_Example/AYGestureHelpView.framework"
-  install_framework "Pods-AYGestureHelpView_Example/pop.framework"
-fi
-if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-AYGestureHelpView_Example/AYGestureHelpView.framework"
-  install_framework "Pods-AYGestureHelpView_Example/pop.framework"
-fi

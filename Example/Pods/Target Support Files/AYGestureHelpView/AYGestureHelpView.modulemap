@@ -1,6 +1,0 @@
-framework module AYGestureHelpView {
-  umbrella header "AYGestureHelpView-umbrella.h"
-
-  export *
-  module * { export * }
-}

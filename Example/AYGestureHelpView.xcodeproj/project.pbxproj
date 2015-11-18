@@ -21,8 +21,8 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		6629AD778F0B8907809EF758 /* Pods_AYGestureHelpView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A034322E974DA0E51EC0F /* Pods_AYGestureHelpView_Tests.framework */; };
-		A8D7DC00F6CB26C4FBCE9A4A /* Pods_AYGestureHelpView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E9590D07C11374C2E8EF00 /* Pods_AYGestureHelpView_Example.framework */; };
+		D744A1131137731391800207 /* libPods-AYGestureHelpView_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2167748C4CD0AF0A5481974 /* libPods-AYGestureHelpView_Example.a */; };
+		FD0BBC3917FDCA7C4970C5C4 /* libPods-AYGestureHelpView_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9242960D9BD57C3AC4BD2312 /* libPods-AYGestureHelpView_Tests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,11 +59,11 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		7C5A034322E974DA0E51EC0F /* Pods_AYGestureHelpView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AYGestureHelpView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CF638B3143493E111BB138E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		9242960D9BD57C3AC4BD2312 /* libPods-AYGestureHelpView_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AYGestureHelpView_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2167748C4CD0AF0A5481974 /* libPods-AYGestureHelpView_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AYGestureHelpView_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB38C4135B96B7366D158D93 /* Pods-AYGestureHelpView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AYGestureHelpView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-AYGestureHelpView_Example/Pods-AYGestureHelpView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		BC9D3A98F509771BB735888B /* Pods-AYGestureHelpView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AYGestureHelpView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AYGestureHelpView_Tests/Pods-AYGestureHelpView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		C4E9590D07C11374C2E8EF00 /* Pods_AYGestureHelpView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AYGestureHelpView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0299F57403FC43F32A0A625 /* Pods-AYGestureHelpView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AYGestureHelpView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AYGestureHelpView_Example/Pods-AYGestureHelpView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,7 +75,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				A8D7DC00F6CB26C4FBCE9A4A /* Pods_AYGestureHelpView_Example.framework in Frameworks */,
+				D744A1131137731391800207 /* libPods-AYGestureHelpView_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +86,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				6629AD778F0B8907809EF758 /* Pods_AYGestureHelpView_Tests.framework in Frameworks */,
+				FD0BBC3917FDCA7C4970C5C4 /* libPods-AYGestureHelpView_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,8 +133,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				C4E9590D07C11374C2E8EF00 /* Pods_AYGestureHelpView_Example.framework */,
-				7C5A034322E974DA0E51EC0F /* Pods_AYGestureHelpView_Tests.framework */,
+				A2167748C4CD0AF0A5481974 /* libPods-AYGestureHelpView_Example.a */,
+				9242960D9BD57C3AC4BD2312 /* libPods-AYGestureHelpView_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

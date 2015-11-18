@@ -10,17 +10,21 @@
 
 #import <pop/POP.h>
 
-@interface AYTouchView ()
+NSTimeInterval const kTapAnimationDuration = 1.5f;
+NSTimeInterval const kDoubleTapAnimationDuration = 2;
+NSTimeInterval const kSwipeAnimationDuration = 1.5f;
+NSTimeInterval const kLongPressAnimationDuration = 2;
 
-@property (nonatomic) UIView *innerCircle;
-@property (nonatomic) UIView *firstOuterCircle;
-@property (nonatomic) UIView *secondOuterCircle;
+@interface AYTouchViewInnerCircle : UIView
+
+@property (nonatomic) CGPoint startPoint;
+@property (nonatomic) CGPoint endPoint;
 
 @end
 
-@implementation AYTouchView
+@implementation AYTouchViewInnerCircle
 
-#pragma mark Lifecycle
+#pragma mark Initialization
 
 - (instancetype)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
@@ -28,63 +32,59 @@
     return nil;
   }
 
-  self.innerCircle = [[UIView alloc] initWithFrame:self.bounds];
-  self.innerCircle.layer.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8f].CGColor;
-  self.innerCircle.layer.cornerRadius = CGRectGetHeight(self.innerCircle.bounds) / 2;
-  self.innerCircle.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.7f].CGColor;
-  self.innerCircle.layer.borderWidth = 3;
-  [self addSubview:self.innerCircle];
-
-  self.firstOuterCircle = [[UIView alloc] initWithFrame:self.bounds];
-  self.secondOuterCircle = [[UIView alloc] initWithFrame:self.bounds];
-  for (UIView *outerCircle in @[self.firstOuterCircle, self.secondOuterCircle]) {
-    outerCircle.layer.cornerRadius = CGRectGetHeight(outerCircle.bounds) / 2;
-    outerCircle.layer.borderColor = [UIColor whiteColor].CGColor;
-    outerCircle.layer.borderWidth = 2;
-    outerCircle.alpha = 0;
-    [self addSubview:outerCircle];
-  }
+  self.layer.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8f].CGColor;
+  self.layer.cornerRadius = CGRectGetHeight(self.bounds) / 2;
+  self.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.7f].CGColor;
+  self.layer.borderWidth = 3;
 
   return self;
 }
 
-#pragma mark Public
+#pragma mark Animations
 
-- (void)addTapAnimation {
-  [self addAlphaAnimation];
-  [self addTapAnimationToOuterCircle:self.firstOuterCircle];
-}
-
-- (void)addDoubleTapAnimation {
-  [self addTapAnimation];
-  [self performSelector:@selector(addTapAnimationToOuterCircle:) withObject:self.secondOuterCircle afterDelay:0.5f];
-  [self performSelector:@selector(addAlphaAnimation) withObject:self.secondOuterCircle afterDelay:0.5f];
-}
-
-- (void)addSwipeAnimation {
-  [self addAlphaAnimation];
-  [self addCenterAnimation];
-}
-
-#pragma mark Private
-
-- (void)addAlphaAnimation {
+- (void)addAlphaAnimationWithDuration:(NSTimeInterval)duration {
   POPBasicAnimation *opacityAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
   opacityAnimation.fromValue = @(1);
   opacityAnimation.toValue = @(0.3f);
-  opacityAnimation.duration = 1.5f;
-  [self.innerCircle pop_addAnimation:opacityAnimation forKey:@"alpha"];
+  opacityAnimation.duration = duration;
+  [self pop_addAnimation:opacityAnimation forKey:@"alpha"];
 }
 
-- (void)addCenterAnimation {
+- (void)addCenterAnimationWithDuration:(NSTimeInterval)duration {
   POPBasicAnimation *centerAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewCenter];
-  centerAnimation.fromValue = [NSValue valueWithCGPoint:[self.superview convertPoint:self.startPoint toView:self]];
-  centerAnimation.toValue = [NSValue valueWithCGPoint:[self.superview convertPoint:self.endPoint toView:self]];
-  centerAnimation.duration = 1.5f;
-  [self.innerCircle pop_addAnimation:centerAnimation forKey:@"center"];
+  centerAnimation.fromValue = [NSValue valueWithCGPoint:[self.superview.superview convertPoint:self.startPoint toView:self.superview]];
+  centerAnimation.toValue = [NSValue valueWithCGPoint:[self.superview.superview convertPoint:self.endPoint toView:self.superview]];
+  centerAnimation.duration = duration;
+  [self pop_addAnimation:centerAnimation forKey:@"center"];
 }
 
-- (void)addTapAnimationToOuterCircle:(UIView *)outerCircle {
+@end
+
+
+@interface AYTouchViewOuterCircle : UIView
+@end
+
+@implementation AYTouchViewOuterCircle
+
+#pragma mark Initialization
+
+- (instancetype)initWithFrame:(CGRect)frame {
+  self = [super initWithFrame:frame];
+  if (!self) {
+    return nil;
+  }
+
+  self.layer.cornerRadius = CGRectGetHeight(self.bounds) / 2;
+  self.layer.borderColor = [UIColor whiteColor].CGColor;
+  self.layer.borderWidth = 2;
+  self.alpha = 0;
+
+  return self;
+}
+
+#pragma mark Animations
+
+- (void)addTouchAnimation {
   POPBasicAnimation *scaleAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
   scaleAnimation.fromValue = [NSValue valueWithCGSize:CGSizeMake(1, 1)];
   scaleAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(2.5f, 2.5f)];
@@ -97,8 +97,74 @@
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     animation.duration = 1;
   }
-  [outerCircle.layer pop_addAnimation:scaleAnimation forKey:@"scale"];
-  [outerCircle pop_addAnimation:alphaAnimation forKey:@"alpha"];
+  [self.layer pop_addAnimation:scaleAnimation forKey:@"scale"];
+  [self pop_addAnimation:alphaAnimation forKey:@"alpha"];
+}
+
+@end
+
+
+@interface AYTouchView ()
+
+@property (nonatomic) AYTouchViewInnerCircle *innerCircle;
+@property (nonatomic) AYTouchViewOuterCircle *firstOuterCircle;
+@property (nonatomic) AYTouchViewOuterCircle *secondOuterCircle;
+
+@end
+
+@implementation AYTouchView
+
+#pragma mark Initialization
+
+- (instancetype)initWithFrame:(CGRect)frame {
+  self = [super initWithFrame:frame];
+  if (!self) {
+    return nil;
+  }
+
+  self.innerCircle = [[AYTouchViewInnerCircle alloc] initWithFrame:self.bounds];
+  [self addSubview:self.innerCircle];
+  self.firstOuterCircle = [[AYTouchViewOuterCircle alloc] initWithFrame:self.bounds];
+  [self addSubview:self.firstOuterCircle];
+  self.secondOuterCircle = [[AYTouchViewOuterCircle alloc] initWithFrame:self.bounds];
+  [self addSubview:self.secondOuterCircle];
+
+  return self;
+}
+
+#pragma mark Setters
+
+- (void)setStartPoint:(CGPoint)startPoint {
+  _startPoint = startPoint;
+  self.innerCircle.startPoint = startPoint;
+}
+
+- (void)setEndPoint:(CGPoint)endPoint {
+  _endPoint = endPoint;
+  self.innerCircle.endPoint = endPoint;
+}
+
+#pragma mark Public
+
+- (void)addTapAnimation {
+  [self.innerCircle addAlphaAnimationWithDuration:kTapAnimationDuration];
+  [self.firstOuterCircle addTouchAnimation];
+}
+
+- (void)addDoubleTapAnimation {
+  [self.innerCircle addAlphaAnimationWithDuration:kTapAnimationDuration];
+  [self.firstOuterCircle addTouchAnimation];
+  [self.secondOuterCircle performSelector:@selector(addTouchAnimation) withObject:nil afterDelay:0.5f];
+}
+
+- (void)addSwipeAnimation {
+  [self.innerCircle addAlphaAnimationWithDuration:kSwipeAnimationDuration];
+  [self.innerCircle addCenterAnimationWithDuration:kSwipeAnimationDuration];
+}
+
+- (void)addLongPressAnimation {
+  [self.innerCircle addAlphaAnimationWithDuration:kLongPressAnimationDuration];
+  [self.firstOuterCircle performSelector:@selector(addTouchAnimation) withObject:nil afterDelay:kLongPressAnimationDuration - 1];
 }
 
 @end
