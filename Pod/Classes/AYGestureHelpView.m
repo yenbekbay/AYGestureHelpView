@@ -89,13 +89,7 @@ static CGFloat const kHelpViewDefaultTouchRadius = 25;
   self.dismissHandler = dismissHandler;
   self.hideOnDismiss = hideOnDismiss;
 
-  if (!self.superview) {
-    [[[UIApplication sharedApplication] delegate].window addSubview:self];
-  }
   [self showIfNeededWithCompletionBlock:^{
-    if (self.timer) {
-      [self.timer invalidate];
-    }
     [self.touchView addSwipeAnimation];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.5f target:self.touchView selector:@selector(addSwipeAnimation) userInfo:nil repeats:YES];
   }];
@@ -129,13 +123,7 @@ static CGFloat const kHelpViewDefaultTouchRadius = 25;
   self.dismissHandler = dismissHandler;
   self.hideOnDismiss = hideOnDismiss;
 
-  if (!self.superview) {
-    [[[UIApplication sharedApplication] delegate].window addSubview:self];
-  }
   [self showIfNeededWithCompletionBlock:^{
-    if (self.timer) {
-      [self.timer invalidate];
-    }
     if (doubleTap) {
       [self.touchView addDoubleTapAnimation];
       self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self.touchView selector:@selector(addDoubleTapAnimation) userInfo:nil repeats:YES];
@@ -147,6 +135,15 @@ static CGFloat const kHelpViewDefaultTouchRadius = 25;
 }
 
 - (void)showIfNeededWithCompletionBlock:(void (^_Nonnull)(void))completionBlock {
+  completionBlock = ^{
+    if (self.timer) {
+      [self.timer invalidate];
+    }
+    completionBlock();
+  };
+  if (!self.superview) {
+    [[[UIApplication sharedApplication] delegate].window addSubview:self];
+  }
   if (self.alpha == 0) {
     [UIView animateWithDuration:0.5f animations:^{
       self.alpha = 1;
@@ -158,7 +155,7 @@ static CGFloat const kHelpViewDefaultTouchRadius = 25;
   }
 }
 
-- (void)didTap:(UITapGestureRecognizer *)tapGestureRecognizer {
+- (void)didTap:(UITapGestureRecognizer *)gestureRecognizer {
   if (self.hideOnDismiss) {
     [self.timer invalidate];
     [UIView animateWithDuration:0.5f animations:^{
