@@ -18,5 +18,7 @@
 - (void)addTapAnimation;
 - (void)addDoubleTapAnimation;
 - (void)addSwipeAnimation;
+- (void)addLongPressAnimation;
+- (void)addLPressAnimation;
 
 @end
