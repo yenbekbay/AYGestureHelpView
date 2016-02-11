@@ -106,4 +106,6 @@ typedef void (^AYGestureHelpViewDismissHandler)(void);
  */
 - (void)longPressWithLabelText:(NSString *)labelText labelPoint:(CGPoint)labelPoint touchPoint:(CGPoint)touchPoint dismissHandler:(AYGestureHelpViewDismissHandler)dismissHandler hideOnDismiss:(BOOL)hideOnDismiss;
 
+- (void)dismiss;
+
 @end

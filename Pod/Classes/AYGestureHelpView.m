@@ -95,7 +95,6 @@ static CGFloat const kHelpViewDefaultTouchRadius = 25;
     UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didGesture:)];
     gestureRecognizer.direction = direction;
     [self addGestureRecognizer:gestureRecognizer];
-    
     [self prepareViewWithLabelText:labelText labelPoint:labelPoint touchStartPoint:touchStartPoint touchEndPoint:touchEndPoint dismissHandler:dismissHandler hideOnDismiss:hideOnDismiss];
     [self showIfNeededWithCompletionBlock:^{
         [self.touchView addSwipeAnimation];
@@ -107,6 +106,8 @@ static CGFloat const kHelpViewDefaultTouchRadius = 25;
 - (void)longPressWithLabelText:(NSString *)labelText labelPoint:(CGPoint)labelPoint touchPoint:(CGPoint)touchPoint dismissHandler:(AYGestureHelpViewDismissHandler)dismissHandler hideOnDismiss:(BOOL)hideOnDismiss {
     UILongPressGestureRecognizer *gestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didGesture:)];
     [self addGestureRecognizer:gestureRecognizer];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didCancel:)];
+    [self addGestureRecognizer:tapGestureRecognizer];
     [self prepareViewWithLabelText:labelText labelPoint:labelPoint touchStartPoint:touchPoint touchEndPoint:CGPointZero dismissHandler:dismissHandler hideOnDismiss:hideOnDismiss];
     [self showIfNeededWithCompletionBlock:^{
         [self.touchView addLongPressAnimation];
@@ -117,7 +118,7 @@ static CGFloat const kHelpViewDefaultTouchRadius = 25;
 #pragma mark Private
 
 - (void)setUpViews {
-    self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.75f];
+    self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8f];
     self.alpha = 0;
     
     self.touchView = [[AYTouchView alloc] initWithFrame:CGRectMake(0, 0, self.touchRadius * 2, self.touchRadius * 2)];
@@ -132,7 +133,12 @@ static CGFloat const kHelpViewDefaultTouchRadius = 25;
 }
 
 - (void)tapWithLabelText:(NSString *)labelText labelPoint:(CGPoint)labelPoint touchPoint:(CGPoint)touchPoint dismissHandler:(AYGestureHelpViewDismissHandler)dismissHandler doubleTap:(BOOL)doubleTap hideOnDismiss:(BOOL)hideOnDismiss {
-    [self prepareViewWithLabelText:labelText labelPoint:labelPoint touchStartPoint:touchPoint touchEndPoint:CGPointZero dismissHandler:dismissHandler hideOnDismiss:hideOnDismiss];
+    [self prepareViewWithLabelText:labelText
+                        labelPoint:labelPoint
+                   touchStartPoint:touchPoint
+                     touchEndPoint:CGPointZero
+                    dismissHandler:dismissHandler
+                     hideOnDismiss:hideOnDismiss];
     [self showIfNeededWithCompletionBlock:^{
         if (doubleTap) {
             [self.touchView addDoubleTapAnimation];
@@ -178,7 +184,11 @@ static CGFloat const kHelpViewDefaultTouchRadius = 25;
     }
 }
 
-- (void)didGesture:(UIGestureRecognizer *)gestureRecognizer {
+- (void)didCancel:(UIGestureRecognizer *)gestureRecognizer {
+    [self hide];
+}
+
+- (void)hide {
     if (self.hideOnDismiss) {
         [self.timer invalidate];
         [UIView animateWithDuration:0.5f animations:^{
@@ -187,9 +197,17 @@ static CGFloat const kHelpViewDefaultTouchRadius = 25;
             [self removeFromSuperview];
         }];
     }
+}
+
+- (void)dismiss {
+    [self hide];
     if (self.dismissHandler) {
         self.dismissHandler();
     }
+}
+
+- (void)didGesture:(UIGestureRecognizer *)gestureRecognizer {
+    [self dismiss];
 }
 
 @end
