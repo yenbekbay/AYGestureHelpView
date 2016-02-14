@@ -80,11 +80,20 @@ typedef void (^AYGestureHelpViewDismissHandler)(void);
  *  @param labelPoint      Position for the description label relative to the view frame.
  *  @param touchStartPoint Position for the starting point of the touch view animation relative to the view frame.
  *  @param touchEndPoint   Position for the ending point of the touch view animation relative to the view frame.
+ *  @param direction direction of swipe on the view.
  *  @param dismissHandler  Action performed when the user taps on the view.
  *  @param hideOnDismiss   Whether or not the view should be dismissed on tap. Set NO if you would like to
  *  chain other animations.
  */
-- (void)swipeWithLabelText:(NSString *)labelText labelPoint:(CGPoint)labelPoint touchStartPoint:(CGPoint)touchStartPoint touchEndPoint:(CGPoint)touchEndPoint dismissHandler:(AYGestureHelpViewDismissHandler)dismissHandler hideOnDismiss:(BOOL)hideOnDismiss;
+
+- (void)swipeWithLabelText:(NSString *)labelText
+                labelPoint:(CGPoint)labelPoint
+           touchStartPoint:(CGPoint)touchStartPoint
+             touchEndPoint:(CGPoint)touchEndPoint
+                 direction:(UISwipeGestureRecognizerDirection)direction
+            dismissHandler:(AYGestureHelpViewDismissHandler)dismissHandler
+             hideOnDismiss:(BOOL)hideOnDismiss;
+
 /**
  *  Performs a repeating long press gesture animation at the specified point with the specified description text.
  *
@@ -96,5 +105,7 @@ typedef void (^AYGestureHelpViewDismissHandler)(void);
  *  chain other animations.
  */
 - (void)longPressWithLabelText:(NSString *)labelText labelPoint:(CGPoint)labelPoint touchPoint:(CGPoint)touchPoint dismissHandler:(AYGestureHelpViewDismissHandler)dismissHandler hideOnDismiss:(BOOL)hideOnDismiss;
+
+- (void)dismiss;
 
 @end
